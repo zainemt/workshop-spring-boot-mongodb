@@ -9,6 +9,4 @@ import com.mongodbproject.domain.User;
 @Repository
 public interface UserRepository extends MongoRepository<User, ObjectId>{
 
-	
-	User findByName(String name);
 }
