@@ -6,8 +6,11 @@ import java.util.stream.Collectors;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,9 +33,22 @@ public class UserResource {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<UserDTO> findById(@PathVariable ObjectId id) {
-		UserDTO userDTO = new UserDTO(service.findById(id));
+	public ResponseEntity<UserDTO> findById(@PathVariable String id) {
+		ObjectId objId = new ObjectId(id);
+		UserDTO userDTO = new UserDTO(service.findById(objId));
 		return ResponseEntity.ok().body(userDTO);
 	}
 	
+	@PostMapping()
+	public ResponseEntity<UserDTO> insert(@RequestBody UserDTO requestBodyUserDto) {
+		User userFromDTO = service.fromDTO(requestBodyUserDto);
+		UserDTO userDTO = new UserDTO(service.insert(userFromDTO));
+		return ResponseEntity.ok().body(userDTO);
+	}
+	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable ObjectId id) {
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}
 }

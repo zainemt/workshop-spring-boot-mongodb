@@ -2,30 +2,28 @@ package com.mongodbproject.domain.dto;
 
 import java.io.Serializable;
 
-import org.bson.types.ObjectId;
-
 import com.mongodbproject.domain.User;
 
 public class UserDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private ObjectId id;
+	private String id;
 	private String name;
 	private String email;
 	
 	public UserDTO() {}
 	
 	public UserDTO(User user) {
-		this.id = user.getId();
+		this.id = user.getId().toString();
 		this.name = user.getName();
 		this.email = user.getEmail();
 	}
 
-	public ObjectId getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(ObjectId id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
