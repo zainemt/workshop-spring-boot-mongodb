@@ -1,5 +1,7 @@
 package com.mongodbproject.domain.dto;
 
-public record RegisterDTO(String login, String password, String role) {
+import com.mongodbproject.domain.enums.UserRoles;
+
+public record RegisterDTO(String login, String password, UserRoles role) {
 
 }

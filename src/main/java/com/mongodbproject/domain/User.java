@@ -30,6 +30,12 @@ public class User implements Serializable, UserDetails {
 	private UserRoles role;
 	
 	public User() {}
+	
+	public User(String login, String password, UserRoles role) {
+		this.login = login;
+		this.password = password;
+		this.role = role;
+	}
 
 	public User(ObjectId id, String name, String email, String login, String password) {
 		this.id = id;
