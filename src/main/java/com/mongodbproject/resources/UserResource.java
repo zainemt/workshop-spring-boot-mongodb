@@ -40,9 +40,8 @@ public class UserResource {
 	}
 	
 	@PostMapping()
-	public ResponseEntity<UserDTO> insert(@RequestBody UserDTO requestBodyUserDto) {
-		User userFromDTO = service.fromDTO(requestBodyUserDto);
-		UserDTO userDTO = new UserDTO(service.insert(userFromDTO));
+	public ResponseEntity<UserDTO> insert(@RequestBody User user) {
+		UserDTO userDTO = new UserDTO(service.insert(user));
 		return ResponseEntity.ok().body(userDTO);
 	}
 	

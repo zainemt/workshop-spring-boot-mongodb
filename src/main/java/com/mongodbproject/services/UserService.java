@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mongodbproject.domain.User;
-import com.mongodbproject.domain.dto.UserDTO;
 import com.mongodbproject.exceptions.InvalidObject;
 import com.mongodbproject.exceptions.ObjectNotFoundException;
 import com.mongodbproject.repository.UserRepository;
@@ -28,9 +27,9 @@ public class UserService {
 		return user.orElseThrow(() -> new ObjectNotFoundException("Id consultado: " + id));
 	}
 	
-	public User fromDTO(UserDTO dto) {
-		return new User(null, dto.getName(), dto.getEmail());
-	}
+	//public User fromDTO(UserDTO dto) {
+		//return new User(null, dto.getName(), dto.getEmail());
+	//}
 	
 	public User insert(User user) {
 		if (user.getName() == null || user.getEmail() == null) {
